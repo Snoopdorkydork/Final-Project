@@ -34,7 +34,9 @@ df_class.dropna(axis="index", how="any", inplace=True, subset=columns_sub)
 df_area.dropna(axis="index", how="any", inplace=True, subset=columns_sub_1)
 
 inputs = df_class.drop(["Classes", "day", "month", "year"], axis="columns")
+print(inputs.columns.values)
 target = df_class["Classes"].values
+inputs = inputs.astype(float)
 
 count = 0
 target_label = []
