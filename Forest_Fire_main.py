@@ -5,11 +5,13 @@ Aim:- The aim of the code is to predict the likelyhood of forest fires
 given the weather conditions.
 '''
 
-from functions import get_inputs
-from functions import get_model_type
-from functions import Model_train
-from functions import Model_score
-from functions import Model_predict
+from Forest_Fire_functions import get_inputs
+from Forest_Fire_functions import get_model_type
+from Forest_Fire_functions import Model_train
+from Forest_Fire_functions import Model_score
+from Forest_Fire_functions import Model_predict
+from Forest_Fire_functions import display_output
+import pyglet
 
 print("************         Welcome to the Forest Fire Predictor        ************")
 print("This predictor works on various machine learning classification\n" +
@@ -22,7 +24,9 @@ print("Model: Decision Tree Classifier                                    Code: 
       "Model: Multi Level Perceptron Classifier                           Code: MLP\n" +
       "Model: Gaussian Naive Bayes Classifier                             Code: GNB\n" +
       "Model: The concensus between all models gives us the prediction    Code: ALL\n")
+
 model_type = get_model_type()
+
 while True:
     Train = input("Do you want to retrain the model?(Y/N) : ")
     if Train == "Y":
@@ -32,6 +36,7 @@ while True:
         break
     else:
         print("Enter a valid answer!")
+
 while True:
     Score = input("Do you want to know the accuracy of the model?(Y/N) : ")
     if Score == "Y":
@@ -41,6 +46,7 @@ while True:
         break
     else:
         print("Enter a valid answer!")
+
 while True:
     Predict = input("Do you want to make a prediction?(Y/N) : ")
     if Score == "Y":
@@ -55,4 +61,10 @@ while True:
 
 Model_score(model_type)
 prediction = Model_predict(model_type, X=inputs)
-print(prediction)
+win, sprite = display_output(prediction)
+
+
+@win.event
+def on_draw():
+    win.clear()
+    sprite.draw()
