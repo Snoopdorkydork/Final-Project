@@ -56,10 +56,10 @@ inputs = get_inputs()
 
 while True:
     Predict = input("Do you want to make a prediction?(Y/N) : ")
-    if Score == "Y":
+    if Predict == "Y":
         prediction = Model_predict(model_type, X=inputs)
         break
-    elif Score == "N":
+    elif Predict == "N":
         break
     else:
         print("Enter a valid answer!")
