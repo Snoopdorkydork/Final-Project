@@ -12,7 +12,7 @@ used are as follows:
 
 For predicting the fire using the models mentioned above, user is asked to input various input values.
 The values asked are for the various attributes which are responsible for forest fire. The attributes are as follows:
-1. emperature
+1. Temperature
 2. Relative Humidity (RH)
 3. Wind speed
 4. Rain
