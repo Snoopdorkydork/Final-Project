@@ -104,6 +104,7 @@ def get_inputs():
             print("Enter a valid value!")
 
     in_val = np.array([[temp, RH, wind, rain, FFMC, DMC, DC, ISI, BUI, FWI]])
+    # The inputs from the user has to be to converted to numpy array to be understood by the models.
     return in_val
 
 
