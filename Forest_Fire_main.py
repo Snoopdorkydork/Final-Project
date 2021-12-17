@@ -64,8 +64,7 @@ while True:
     else:
         print("Enter a valid answer!")
 
-Model_score(model_type)
-prediction = Model_predict(model_type, X=inputs)
+
 win, sprite = display_output(prediction)
 
 
@@ -73,3 +72,6 @@ win, sprite = display_output(prediction)
 def on_draw():
     win.clear()
     sprite.draw()
+
+
+pyglet.app.run()
