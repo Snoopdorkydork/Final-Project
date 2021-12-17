@@ -51,25 +51,22 @@ while True:
     else:
         print("Enter a valid answer!")
 
-print("Enter the required data as requested")
-inputs = get_inputs()
-
 while True:
     Predict = input("Do you want to make a prediction?(Y/N) : ")
     if Predict == "Y":
+        print("Enter the required data as requested")
+        inputs = get_inputs()
         prediction = Model_predict(model_type, X=inputs)
+        win, sprite = display_output(prediction)
+
+        @win.event
+        def on_draw():
+            win.clear()
+            sprite.draw()
+
+        pyglet.app.run()
         break
     elif Predict == "N":
         break
     else:
         print("Enter a valid answer!")
-
-if Predict == "Y":
-    win, sprite = display_output(prediction)
-
-    @win.event
-    def on_draw():
-        win.clear()
-        sprite.draw()
-
-    pyglet.app.run()
