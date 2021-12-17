@@ -3,6 +3,15 @@ This Repository is the final project for Software carpentry course.
 Forest Fires are rampant in the world and we have created a program to predict fire so actions can 
 be taken in advance for its prevention.
 
+The user should have pr download the following python packages to run the program:
+1. pandas
+2. sklearn
+3. pickle
+4. scipy
+5. numpy
+6. pyglet
+To run the file, the user should download all the files and run the main class.
+
 We use 4 models and the user can choose either or all of the models to predict the Fire. The models
 used are as follows:
 1. Decision Tree Classifier
