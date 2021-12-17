@@ -64,14 +64,12 @@ while True:
     else:
         print("Enter a valid answer!")
 
+if Predict == "Y":
+    win, sprite = display_output(prediction)
 
-win, sprite = display_output(prediction)
+    @win.event
+    def on_draw():
+        win.clear()
+        sprite.draw()
 
-
-@win.event
-def on_draw():
-    win.clear()
-    sprite.draw()
-
-
-pyglet.app.run()
+    pyglet.app.run()
