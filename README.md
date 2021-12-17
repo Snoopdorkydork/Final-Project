@@ -23,6 +23,6 @@ The values asked are for the various attributes which are responsible for forest
 9. Buildup Index (BUI)
 10. 10.Fire Weather Index (FWI)
 
-The output: Fire prediction is given in the written form in the console as well as a fun gif.
+Our output, fire prediction - " Fire" or " No Fire" is displayed in written form in the console as well as in the form of a  fun gif.
 
 Reach out to us, if you have any doubts or would like to make any suggestions. Thank you!
