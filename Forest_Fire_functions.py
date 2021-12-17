@@ -147,11 +147,11 @@ def display_output(prediction):
 def Model_train(model_type, filepath='Data/forestfires.csv'): 
     # function to train the 4 types of models used
     
-    df_class = pd.read_csv(filepath) # reading the data into the excel sheet
+    df_class = pd.read_csv(filepath) 
 
     df_class.columns = df_class.columns.str.replace(' ', '')
 
-    df_class.dropna(axis="index", how="all", inplace=True) #
+    df_class.dropna(axis="index", how="all", inplace=True) 
 
     columns_sub = ["Classes", "Temperature", "RH", "Ws",
                    "Rain", "FFMC", "DMC", "DC", "ISI", "BUI", "FWI"]
@@ -185,7 +185,7 @@ def Model_train(model_type, filepath='Data/forestfires.csv'):
     pickle.dump(X_test, open(X_test_file, 'wb'))
     pickle.dump(Y_test, open(Y_test_file, 'wb'))
     
-    #
+    # algorithms according to the model chosen
 
     if model_type == "DT":
         model = tree.DecisionTreeClassifier()
@@ -237,6 +237,7 @@ def Model_train(model_type, filepath='Data/forestfires.csv'):
 
 
 def Model_score(model_type):
+    # Function model score taking the model typet as its input and giving the score of model
     X_test = pickle.load(open("Data/X_Test_data.pik", 'rb'))
     Y_test = pickle.load(open("Data/Y_Test_data.pik", 'rb'))
 
@@ -303,6 +304,7 @@ def Model_score(model_type):
 
 
 def Model_predict(model_type, X):
+    # Giving the fire prediction depending on the model used 
     if model_type == "DT":
         filename = "Data/Decision_Tree_Classifier_model.pik"
         model = pickle.load(open(filename, 'rb'))
@@ -353,8 +355,7 @@ def Model_predict(model_type, X):
 
 
 if __name__ == "__main__":
-    # model_type = get_model_type()
-    # inputs = get_inputs()
+    #  Main function calling all other functions
     model_type = "DT"
     inputs = [[29.0, 57.0, 18.0, 0, 65.7, 3.4, 7.6, 1.3, 3.4, 0.5]]
     Model_score(model_type)
