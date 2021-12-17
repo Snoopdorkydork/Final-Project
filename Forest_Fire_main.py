@@ -3,8 +3,10 @@
 Contributors - Mahin Gadkari , Rashi Sultania
 Aim:- The aim of the code is to predict the likelyhood of forest fires
 given the weather conditions.
-The code uses 4 algorithms to predict forest fire. The user can chose either or all of
+Logic behind the code: The code uses 4 algorithms to predict forest fire. The user can chose either or all of
 the algorithms to predict fire. 
+
+This is the main part of the program asking user input and giving the desired output.
 '''
 
 from functions import get_inputs
