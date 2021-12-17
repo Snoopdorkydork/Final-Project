@@ -3,6 +3,10 @@
 Contributors - Mahin Gadkari , Rashi Sultania
 Aim:- The aim of the code is to predict the likelyhood of forest fires
 given the weather conditions.
+Logic behind the code: The code uses 4 algorithms to predict forest fire. The user can chose either or all of
+the algorithms to predict fire. 
+
+This part of the code defines the functions which are called in the main part.
 '''
 
 import pandas as pd
@@ -14,10 +18,13 @@ from sklearn.naive_bayes import GaussianNB
 import pickle
 import scipy
 import numpy as np
-import pyglet
+import pyglet  
+# importing all the required classes for different functions in the program.
 
 
 def get_inputs():
+    # Function to ask user for all inputs ( Humidity, Wind speed, Rain etc.)
+    # in the right unit or is asked again using the while loop and stores the values
     while True:
         temp = input('Please enter Temperature in Celcius : ')
         try:
@@ -101,6 +108,7 @@ def get_inputs():
 
 
 def get_model_type():
+    # asks user to choose the model or choose all of the above
     while True:
         model_type = input("Please enter the model type: ")
         if model_type in ["DT", "SVC", "MLP", "GNB", "ALL"]:
@@ -113,19 +121,21 @@ def get_model_type():
 def display_output(prediction):
     '''
     '''
-    fire_file = "Output/spongebob.gif"
-    not_fire_file = "Output/diablo.gif"
+    fire_file = "Output/spongebob.gif" # uses this gif if there is a fire
+    not_fire_file = "Output/diablo.gif" # uses this gif if there is no fire
 
-    fire_animation = pyglet.resource.animation(fire_file)
+    fire_animation = pyglet.resource.animation(fire_file)  
     not_fire_animation = pyglet.resource.animation(not_fire_file)
-
-    if prediction[0] == 1:
+    # uses pyglet to display gifs
+    
+    # Prints the output in the console as well as in the form of gif
+    if prediction[0] == 1: # Condition if there is fire
         sprite = pyglet.sprite.Sprite(fire_animation)
         win = pyglet.window.Window(
             width=sprite.width, height=sprite.height)
         print("Prediction: FIRE")
 
-    elif prediction[0] == 0:
+    elif prediction[0] == 0: # condition if there is no fire
         sprite = pyglet.sprite.Sprite(not_fire_animation)
         win = pyglet.window.Window(
             width=sprite.width, height=sprite.height)
@@ -134,15 +144,18 @@ def display_output(prediction):
     return win, sprite
 
 
-def Model_train(model_type, filepath='Data/forestfires.csv'):
-    df_class = pd.read_csv(filepath)
+def Model_train(model_type, filepath='Data/forestfires.csv'): 
+    # function to train the 4 types of models used
+    
+    df_class = pd.read_csv(filepath) # reading the data into the excel sheet
 
     df_class.columns = df_class.columns.str.replace(' ', '')
 
-    df_class.dropna(axis="index", how="all", inplace=True)
+    df_class.dropna(axis="index", how="all", inplace=True) #
 
     columns_sub = ["Classes", "Temperature", "RH", "Ws",
                    "Rain", "FFMC", "DMC", "DC", "ISI", "BUI", "FWI"]
+    # defining the various attributes used for fire predictions as colums in the excel sheet
     df_class.dropna(axis="index", how="any", inplace=True, subset=columns_sub)
 
     X = df_class.drop(["Classes", "day", "month", "year"], axis="columns")
@@ -151,7 +164,8 @@ def Model_train(model_type, filepath='Data/forestfires.csv'):
 
     count = 0
     Y_label = []
-
+    
+    # Cleaning the dataset 
     for i in Y:
         count += 1
         if i in ['fire', 'fire ', 'fire   ']:
@@ -162,13 +176,16 @@ def Model_train(model_type, filepath='Data/forestfires.csv'):
             Y_label.append(0)
 
     X_train, X_test, Y_train, Y_test = train_test_split(
-        X, Y_label, test_size=0.2)
+        X, Y_label, test_size=0.2) 
+    
 
     X_test_file = "Data/X_Test_data.pik"
     Y_test_file = "Data/Y_Test_data.pik"
 
     pickle.dump(X_test, open(X_test_file, 'wb'))
     pickle.dump(Y_test, open(Y_test_file, 'wb'))
+    
+    #
 
     if model_type == "DT":
         model = tree.DecisionTreeClassifier()
