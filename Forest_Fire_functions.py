@@ -122,7 +122,7 @@ def display_output(prediction):
     '''
     '''
     fire_file = "Output/spongebob.gif" # uses this gif if there is a fire
-    not_fire_file = "Output/diablo.gif" # uses this gif if there is no fire
+    not_fire_file = "Output/karan.gif" # uses this gif if there is no fire
 
     fire_animation = pyglet.resource.animation(fire_file)  
     not_fire_animation = pyglet.resource.animation(not_fire_file)
