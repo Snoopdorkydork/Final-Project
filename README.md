@@ -10,7 +10,7 @@ The user should have pr download the following python packages to run the progra
 4. scipy
 5. numpy
 6. pyglet
-To run the file, the user should download all the files and run the main class.
+To run the file, the user should download all the files and run the main Forest_Fire_main.py
 
 We use 4 models and the user can choose either or all of the models to predict the Fire. The models
 used are as follows:
