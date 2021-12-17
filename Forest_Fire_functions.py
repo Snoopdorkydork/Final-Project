@@ -120,6 +120,7 @@ def get_model_type():
 
 def display_output(prediction):
     '''
+    Using code by Pyglet(https://pypi.org/project/pyglet/) for displaying gifs
     '''
     fire_file = "Output/spongebob.gif" # uses this gif if there is a fire
     not_fire_file = "Output/karan.gif" # uses this gif if there is no fire
