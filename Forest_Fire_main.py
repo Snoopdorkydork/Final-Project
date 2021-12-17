@@ -51,11 +51,12 @@ while True:
     else:
         print("Enter a valid answer!")
 
+print("Enter the required data as requested")
+inputs = get_inputs()
+
 while True:
     Predict = input("Do you want to make a prediction?(Y/N) : ")
     if Score == "Y":
-        print("Enter the required data as requested")
-        inputs = get_inputs()
         prediction = Model_predict(model_type, X=inputs)
         break
     elif Score == "N":
