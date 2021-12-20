@@ -150,14 +150,13 @@ def Model_train(model_type, filepath='Data/forestfires.csv'):
     # function to train the 4 types of models used
     
     df_class = pd.read_csv(filepath) 
-
+    # Cleaning the dataset 
     df_class.columns = df_class.columns.str.replace(' ', '')
 
     df_class.dropna(axis="index", how="all", inplace=True) 
 
     columns_sub = ["Classes", "Temperature", "RH", "Ws",
                    "Rain", "FFMC", "DMC", "DC", "ISI", "BUI", "FWI"]
-    # defining the various attributes used for fire predictions as colums in the excel sheet
     df_class.dropna(axis="index", how="any", inplace=True, subset=columns_sub)
 
     X = df_class.drop(["Classes", "day", "month", "year"], axis="columns")
@@ -166,8 +165,7 @@ def Model_train(model_type, filepath='Data/forestfires.csv'):
 
     count = 0
     Y_label = []
-    
-    # Cleaning the dataset 
+    # Converting string labels into integer labels.
     for i in Y:
         count += 1
         if i in ['fire', 'fire ', 'fire   ']:
@@ -180,7 +178,6 @@ def Model_train(model_type, filepath='Data/forestfires.csv'):
     X_train, X_test, Y_train, Y_test = train_test_split(
         X, Y_label, test_size=0.2) 
     
-
     X_test_file = "Data/X_Test_data.pik"
     Y_test_file = "Data/Y_Test_data.pik"
 
